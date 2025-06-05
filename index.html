@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitud de Recolección</title>
+  <link rel="stylesheet" href="StyleIndex.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <nav>
+        <button class="active">1. Solicitar Recolección</button>
+        <button>2. Estado de mi solicitud</button>
+        <button>3. Quejas y Sugerencias</button>
+        <button>4. ...</button>
+      </nav>
+    </header>
+
+    <aside>
+      <ul>
+        <li><strong>Solicitar Nueva Recolección</strong></li>
+        <li>Cancelar Recolección</li>
+        <li>Historial de Solicitudes</li>
+      </ul>
+    </aside>
+
+    <main>
+      <h2>SOLICITAR NUEVA RECOLECCIÓN</h2>
+      <form id="formRecoleccion">
+        <label for="fecha">Fecha de recojo:</label>
+        <input type="date" id="fecha" name="fecha">
+
+        <label for="tipo">Tipo de residuo:</label>
+        <select id="tipo" name="tipo" required>
+          <option value="">Selecciona el tipo de residuo</option>
+          <option value="orgánico">Orgánico</option>
+          <option value="inorgánico">Inorgánicos</option>
+          <option value="peligroso">Peligrosos</option>
+        </select>
+
+        <label for="ubicacion">Ubicación:</label>
+        <input type="text" id="ubicacion" placeholder="Aquí puedes escribir tu dirección con referencias">
+
+        <label for="observaciones">Observaciones:</label>
+        <textarea id="observaciones" placeholder="Aquí puedes escribir detalles extra"></textarea>
+
+        <div class="form-buttons">
+          <button type="button" onclick="volverInicio()">&#60; VOLVER AL INICIO</button>
+          <button type="submit">Enviar Solicitud</button>
+          <button type="button">SIGUIENTE &#62;</button>
+        </div>
+      </form>
+    </main>
+  </div>
+  <script src="ScriptIndex.js"></script>
+</body>
+</html>

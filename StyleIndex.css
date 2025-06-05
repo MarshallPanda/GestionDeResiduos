@@ -1,0 +1,79 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 480px;
+  margin: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+header nav button {
+  font-size: 12px;
+  padding: 5px;
+  margin: 2px;
+}
+
+header nav button.active {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+aside ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+aside ul li {
+  padding: 8px;
+  border: 1px solid #ddd;
+  margin-bottom: 5px;
+  background-color: #eaeaea;
+}
+
+main {
+  padding: 10px 0;
+}
+
+form label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+form input[type="date"],
+form input[type="text"],
+form select,
+form textarea {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+button {
+  padding: 8px 12px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
