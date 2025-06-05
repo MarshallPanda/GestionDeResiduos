@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quejas y Sugerencias</title>
+  <link rel="stylesheet" href="../Styles/StyleQueja&Sugerencia.css">
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <nav>
+        <a href="../index.html"><button>1. Solicitar Recolección</button></a>
+        <a href="EstadoSolicitud.html"><button>2. Estado de mi solicitud</button></a>
+        <a href="Quejas&Sugerencias.html"><button class="active">3. Quejas y Sugerencias</button></a>
+      </nav>
+    </header>
+
+    <aside>
+      <ul>
+        <li class="selected">Crear nueva Queja/Sugerencia</li>
+        <li>Eliminar</li>
+        <li>Historial de Quejas/Sugerencias</li>
+      </ul>
+    </aside>
+
+    <main>
+      <h2>Crear nueva Queja/Sugerencia</h2>
+      <form id="formMensaje">
+        <label for="tipo">Tipo de mensaje:</label>
+        <select id="tipo" required>
+          <option value="">Selecciona tu tipo de mensaje</option>
+          <option>Queja</option>
+          <option>Sugerencia</option>
+        </select>
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" placeholder="Cuéntanos qué ocurrió o cómo podríamos mejorar..." required></textarea>
+
+        <label for="destino">Para quien va:</label>
+        <select id="destino" required>
+          <option value="">Selecciona va dirigido</option>
+          <option>Sistema</option>
+          <option>Recolector</option>
+          <option>Atención al cliente</option>
+          <option>Soporte técnico</option>
+        </select>
+
+        <label for="fecha">Fecha de Incidente:</label>
+        <input type="date" id="fecha" required>
+
+        <div class="form-buttons">
+          <button type="button" onclick="window.location.href='../index.html'">&#60; ANTERIOR</button>
+          <button type="submit">Enviar mensaje</button>
+        </div>
+      </form>
+    </main>
+  </div>
+  <script src="../Js/ScriptQueja&Sugerencia.js"></script>
+</body>
+</html>
