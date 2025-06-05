@@ -4,25 +4,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const direccion = document.getElementById('direccion');
   const fecha = document.getElementById('fecha');
 
-  // Llenar combo con solicitudes
-  solicitudes.forEach((direccionTexto) => {
+  // Mostrar: Dirección – Fecha en el select
+  solicitudes.forEach((item, index) => {
     const option = document.createElement('option');
-    option.value = direccionTexto;
-    option.textContent = direccionTexto;
+    option.value = index;  // Usamos el índice para identificar la posición
+    option.textContent = `${item.direccion} – ${item.fecha}`;
     select.appendChild(option);
   });
 
-  // Obtener fecha actual en formato YYYY-MM-DD
-  const fechaHoy = new Date().toISOString().split('T')[0];
-
-  // Mostrar dirección y fecha al seleccionar una solicitud
+  // Al seleccionar, cargar solo la dirección y la fecha actual
   select.addEventListener('change', () => {
-    if (select.value !== "Selecciona tu solicitud") {
-      direccion.value = select.value;
-      fecha.value = fechaHoy;
-    } else {
-      direccion.value = "";
-      fecha.value = "";
-    }
-  });
+  const selectedIndex = select.value;
+  if (selectedIndex !== "Selecciona tu solicitud") {
+    const datos = solicitudes[selectedIndex];
+    direccion.value = datos.direccion; // ← ahora editable
+    fecha.value = new Date().toISOString().split('T')[0];
+  } else {
+    direccion.value = "";
+    fecha.value = "";
+  }
+});
 });
