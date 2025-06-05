@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estado de mi Solicitud</title>
+  <link rel="stylesheet" href="../Styles/StyleEstadoSoli.css">
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <nav>
+        <a href="../index.html"><button>1. Solicitar Recolección</button></a>
+        <a href="EstadoSolicitud.html"><button class="active">2. Estado de mi solicitud</button></a>
+        <a href="Quejas&Sugerencias.html"><button>3. Quejas y Sugerencias</button></a>
+      </nav>
+    </header>
+
+    <aside>
+      <ul>
+        <li class="selected">Estado de mi solicitud</li>
+        <li>Enviar mensaje al sistema</li>
+        <li>Tipos de estados</li>
+      </ul>
+    </aside>
+
+    <main>
+      <h2>Estado de mi Solicitud</h2>
+      <form>
+        <label>Seleccione su solicitud</label>
+        <select id="solicitud">
+          <option>Selecciona tu solicitud</option>
+        </select>
+
+        <label>Dirección:</label>
+        <input type="text" id="direccion" readonly>
+
+        <label>Estado:</label>
+        <select id="estado">
+          <option>Pendiente ⏳</option>
+          <option>Confirmado ✅</option>
+        </select>
+
+        <label>Fecha:</label>
+        <input type="date" id="fecha" readonly>
+
+        <div class="form-buttons">
+          <button type="button" onclick="window.location.href='../index.html'">&#60; ANTERIOR</button>
+          <button type="button">SIGUIENTE &#62;</button>
+        </div>
+      </form>
+    </main>
+  </div>
+  <script src="../Js/ScriptEstadoSoli.js"></script>
+</body>
+</html>

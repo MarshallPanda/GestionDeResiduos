@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solicitud de Recolección</title>
-  <link rel="stylesheet" href="StyleIndex.css">
+  <title>Solicitar Recolección</title>
+  <link rel="stylesheet" href="Styles/StyleIndex.css">
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
     <header>
       <nav>
-        <button class="active">1. Solicitar Recolección</button>
-        <button>2. Estado de mi solicitud</button>
-        <button>3. Quejas y Sugerencias</button>
-        <button>4. ...</button>
+        <a href="index.html"><button class="active">1. Solicitar Recolección</button></a>
+        <a href="Html/EstadoSolicitud.html"><button>2. Estado de mi solicitud</button></a>
+        <a href="Html/Quejas&Sugerencias.html"><button>3. Quejas y Sugerencias</button></a>
       </nav>
     </header>
 
     <aside>
       <ul>
-        <li><strong>Solicitar Nueva Recolección</strong></li>
+        <li class="selected">Solicitar Nueva Recolección</li>
         <li>Cancelar Recolección</li>
         <li>Historial de Solicitudes</li>
       </ul>
@@ -29,30 +29,30 @@
       <h2>SOLICITAR NUEVA RECOLECCIÓN</h2>
       <form id="formRecoleccion">
         <label for="fecha">Fecha de recojo:</label>
-        <input type="date" id="fecha" name="fecha">
+        <input type="date" id="fecha" name="fecha" value="2025-05-28">
 
         <label for="tipo">Tipo de residuo:</label>
-        <select id="tipo" name="tipo" required>
-          <option value="">Selecciona el tipo de residuo</option>
-          <option value="orgánico">Orgánico</option>
-          <option value="inorgánico">Inorgánicos</option>
-          <option value="peligroso">Peligrosos</option>
+        <select id="tipo" name="tipo">
+          <option>Selecciona el tipo de residuo</option>
+          <option>Orgánico</option>
+          <option>Inorgánicos</option>
+          <option>Peligrosos</option>
         </select>
 
-        <label for="ubicacion">Ubicación:</label>
-        <input type="text" id="ubicacion" placeholder="Aquí puedes escribir tu dirección con referencias">
+        <label for="ubicacion">Ubicación</label>
+        <input type="text" id="ubicacion" placeholder="[ Aquí puedes escribir tu dirección con referencias ]">
 
         <label for="observaciones">Observaciones:</label>
-        <textarea id="observaciones" placeholder="Aquí puedes escribir detalles extra"></textarea>
+        <textarea id="observaciones" placeholder="[ Aquí puedes escribir detalles extra ]"></textarea>
 
         <div class="form-buttons">
-          <button type="button" onclick="volverInicio()">&#60; VOLVER AL INICIO</button>
+          <button type="button">&#60; VOLVER AL INICIO</button>
           <button type="submit">Enviar Solicitud</button>
           <button type="button">SIGUIENTE &#62;</button>
         </div>
       </form>
     </main>
   </div>
-  <script src="ScriptIndex.js"></script>
+  <script src="Js/ScriptIndex.js"></script>
 </body>
 </html>
