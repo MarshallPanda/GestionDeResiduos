@@ -1,269 +1,353 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gestión de Recolección</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestor de Recolección</title>
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fff;
+      font-family: Arial, sans-serif;
+      background: #f1f1f1;
     }
     .swiper {
       width: 100vw;
       height: 100vh;
     }
     .swiper-slide {
-      padding: 10px;
+      padding: 15px;
       overflow-y: auto;
+      background-color: #f1f1f1;
     }
-    .titulo {
-      text-align: center;
-      font-weight: bold;
-      margin: 15px 0;
-      border: 2px solid #000;
-      padding: 5px;
+    .container {
+      max-width: 430px;
+      margin: auto;
+      background: white;
+      padding: 15px;
+      border-radius: 15px;
+      border: 2px solid #ccc;
     }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding: 0 10px;
-    }
-    form input, form select, form textarea {
-      padding: 8px;
-      border: 2px solid #000;
-      font-size: 14px;
-    }
-    form textarea {
-      resize: vertical;
-    }
-    .form-buttons {
+    .tabs, .submenu {
       display: flex;
       justify-content: space-between;
-      gap: 10px;
-      padding: 10px;
+      margin-bottom: 15px;
     }
-    .form-buttons button {
+    .tabs button, .submenu button {
       flex: 1;
-      padding: 10px;
-      font-size: 14px;
-      border: 2px solid #000;
-      background-color: white;
+      padding: 6px;
+      font-size: 11px;
+      margin: 2px;
+      border: 1px solid black;
+      background-color: #f8f8f8;
+      border-radius: 2px;
       cursor: pointer;
     }
-    .grafico {
-      margin: 10px auto;
-      width: 95%;
+    .tabs button.active, .submenu button.active {
+      background-color: #cfdfff;
+      border: 1.5px solid black;
     }
-    canvas {
-      background: white;
-      border: 1px solid #000;
+    h3 {
+      text-align: center;
+      font-size: 14px;
+      margin-bottom: 15px;
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333;
+      padding: 4px 0;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+    input, select, textarea {
+      width: 100%;
       padding: 5px;
+      margin-top: 4px;
+      font-size: 13px;
+      border: 1px solid #aaa;
+      border-radius: 2px;
+    }
+    textarea {
+      height: 70px;
+      resize: vertical;
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+    .buttons button {
+      padding: 5px 10px;
+      font-size: 12px;
+      border: 1px solid #555;
+      background: #e6e6e6;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+    .container img {
+      margin-top: 10px;
+      border: 1px solid #aaa;
+      border-radius: 4px;
     }
   </style>
 </head>
 <body>
-  <div class="swiper mySwiper">
+  <div class="swiper">
     <div class="swiper-wrapper">
-
       <!-- Slide 1 -->
       <div class="swiper-slide">
-        <h2 class="titulo">SOLICITAR NUEVA RECOLECCIÓN</h2>
-        <form id="formRecoleccion">
+        <div class="container">
+          <div class="tabs">
+            <button class="active">1.Solicitar Recolección</button>
+            <button>2.Estado de mi solicitud</button>
+            <button>3.Quejas y Sugerencias</button>
+            <button>4.dashboard</button>
+          </div>
+
+          <div class="submenu">
+            <button class="active">Solicitar Nueva Recolección</button>
+            <button>Cancelar Recolección</button>
+            <button>Historial de Solicitudes</button>
+          </div>
+
+          <h3>SOLICITAR NUEVA RECOLECCIÓN</h3>
+
           <label>Fecha de recojo:</label>
-          <input type="date" id="fecha">
+          <input type="date" value="2025-05-28" />
 
           <label>Tipo de residuo:</label>
-          <select id="tipo">
+          <select>
             <option>Selecciona el tipo de residuo</option>
             <option>Orgánico</option>
             <option>Inorgánicos</option>
             <option>Peligrosos</option>
           </select>
 
-          <label>Ubicación</label>
-          <input type="text" id="ubicacion" placeholder="[ Aquí puedes escribir tu dirección con referencias ]">
+          <label>Ubicación:</label>
+          <input placeholder="Aquí puedes escribir tu dirección con referencias" />
 
           <label>Observaciones:</label>
-          <textarea id="observaciones" placeholder="[ Aquí puedes escribir detalles extra ]"></textarea>
+          <textarea placeholder="Aquí puedes escribir detalles extra"></textarea>
 
-          <div class="form-buttons">
-            <button type="button" id="volverInicio">&lt; VOLVER AL INICIO</button>
-            <button type="submit">Enviar Solicitud</button>
-            <button type="button" id="irEstado">SIGUIENTE &gt;</button>
+          <div class="buttons">
+            <button>&lt; VOLVER AL INICIO</button>
+            <button>Enviar Solicitud</button>
+            <button>SIGUIENTE &gt;</button>
           </div>
-        </form>
+        </div>
       </div>
 
       <!-- Slide 2 -->
       <div class="swiper-slide">
-        <h2 class="titulo">Estado de mi Solicitud</h2>
-        <form>
+        <div class="container">
+          <div class="tabs">
+            <button>1.Solicitar Recolección</button>
+            <button class="active">2.Estado de mi solicitud</button>
+            <button>3.Quejas y Sugerencias</button>
+            <button>4.dashboard</button>
+          </div>
+
+          <div class="submenu">
+            <button class="active">Estado de mi solicitud</button>
+            <button>Enviar mensaje al sistema</button>
+            <button>Tipos de estados</button>
+          </div>
+
+          <h3>Estado de mi Solicitud</h3>
+
           <label>Seleccione su solicitud:</label>
-          <select id="solicitud">
-            <option value="">Selecciona tu solicitud</option>
-          </select>
+<select>
+  <option disabled selected>Selecciona tu solicitud</option>
+</select>
 
           <label>Dirección:</label>
-          <input type="text" id="direccion">
+<input placeholder="Añade una referencia o comentario adicional" />
 
           <label>Estado:</label>
-          <select>
-            <option>Pendiente ⏳</option>
-            <option>Confirmado ✅</option>
-          </select>
+<select id="estadoSelector">
+  <option>Pendiente ⏳</option>
+  <option>En proceso 🔄</option>
+  <option>Completado ✅</option>
+  <option>Cancelado ❌</option>
+</select>
 
           <label>Fecha:</label>
-          <input type="date" id="fechaEstado">
+<input id="fechaEstado" readonly />
 
-          <div class="form-buttons">
-            <button type="button" id="volverRecoleccion">&lt; ANTERIOR</button>
-            <button type="button" id="irQuejas">SIGUIENTE &gt;</button>
+          <div class="buttons">
+            <button>&lt; ANTERIOR</button>
+            <button>SIGUIENTE &gt;</button>
           </div>
-        </form>
+        </div>
       </div>
 
       <!-- Slide 3 -->
       <div class="swiper-slide">
-        <h2 class="titulo">Crear nueva Queja/Sugerencia</h2>
-        <form id="formMensaje">
+        <div class="container">
+          <div class="tabs">
+            <button>1.Solicitar Recolección</button>
+            <button>2.Estado de mi solicitud</button>
+            <button class="active">3.Quejas y Sugerencias</button>
+            <button>4.dashboard</button>
+          </div>
+
+          <div class="submenu">
+            <button class="active">Crear nueva Queja/Sugerencia</button>
+            <button>Eliminar</button>
+            <button>Historial de Quejas/Sugerencias</button>
+          </div>
+
+          <h3>Crear nueva Queja/Sugerencia</h3>
+
           <label>Tipo de mensaje:</label>
-          <select id="tipoMensaje">
-            <option value="">Selecciona tu tipo de mensaje</option>
+          <select>
             <option>Queja</option>
             <option>Sugerencia</option>
           </select>
 
           <label>Mensaje:</label>
-          <textarea id="mensaje"></textarea>
+          <textarea placeholder="Cuéntanos qué ocurrió o cómo podríamos mejorar..."></textarea>
 
-          <label>Para quien va:</label>
-          <select id="destino">
-            <option value="">Selecciona va dirigido</option>
+          <label>Para quién va:</label>
+          <select>
             <option>Sistema</option>
             <option>Recolector</option>
             <option>Atención al cliente</option>
             <option>Soporte técnico</option>
           </select>
 
-          <label>Fecha de Incidente:</label>
-          <input type="date" id="fechaIncidente">
+          <label>Fecha del incidente:</label>
+          <input type="date" value="2025-05-28" />
 
-          <div class="form-buttons">
-            <button type="button" id="volverEstado">&lt; ANTERIOR</button>
-            <button type="submit">Enviar mensaje</button>
+          <div class="buttons">
+            <button>&lt; ANTERIOR</button>
+            <button>Enviar mensaje</button>
           </div>
-        </form>
+        </div>
       </div>
 
-      <!-- Slide 4: Dashboard dinámico -->
+      <!-- Slide 4 -->
       <div class="swiper-slide">
-        <h2 class="titulo">Tablero de Control</h2>
-        <div class="grafico"><canvas id="chartHistograma"></canvas></div>
-        <div class="grafico"><canvas id="chartPie"></canvas></div>
-        <div class="grafico"><canvas id="chartLinea"></canvas></div>
+        <div class="container">
+          <div class="tabs">
+            <button>1.Solicitar Recolección</button>
+            <button>2.Estado de mi solicitud</button>
+            <button>3.Quejas y Sugerencias</button>
+            <button class="active">dashboard</button>
+          </div>
+          <h3>TABLERO DE CONTROL</h3>
+          <img src="https://via.placeholder.com/300x160?text=DIAGRAMA+HISTOGRAMA" alt="Histograma">
+          <img src="https://via.placeholder.com/300x160?text=DIAGRAMA+CURVA" alt="Curva">
+          <img src="https://via.placeholder.com/300x160?text=DIAGRAMA+PIE" alt="Pie">
+          <img src="https://via.placeholder.com/300x160?text=DIAGRAMA+RANKING" alt="Ranking">
+        </div>
       </div>
-
     </div>
   </div>
-
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const swiper = new Swiper('.swiper', {
+    direction: 'horizontal',
+    loop: false,
+    grabCursor: true,
+  });
+
+  // Botones tabs superiores
+  const tabs = document.querySelectorAll('.tabs button');
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => swiper.slideTo(index));
+  });
+
+  // Botones de navegación inferior
+  const navButtons = document.querySelectorAll('.buttons button');
+  navButtons.forEach((btn) => {
+    if (btn.textContent.includes('SIGUIENTE')) {
+      btn.addEventListener('click', () => swiper.slideNext());
+    }
+    if (btn.textContent.includes('ANTERIOR') || btn.textContent.includes('VOLVER')) {
+      btn.addEventListener('click', () => swiper.slidePrev());
+    }
+  });
+
+  // Botones de submenú lateral
+  const submenus = document.querySelectorAll('.submenu button');
+  submenus.forEach(btn => {
+    btn.addEventListener('click', () => alert(`Funcionalidad de '${btn.textContent}' aún no implementada.`));
+  });
+</script>
   <script>
-    const swiper = new Swiper('.mySwiper', {
+    const swiper = new Swiper('.swiper', {
       direction: 'horizontal',
-      loop: false
+      loop: false,
+      grabCursor: true,
     });
+  </script>
+<script>
+  const solicitudes = [];
+  const fechaRecoleccionInput = document.querySelectorAll('input[type="date"]')[0];
+  const tipoResiduoSelect = document.querySelectorAll('select')[0];
+  const ubicacionInput = document.querySelectorAll('input[placeholder*="referencias"]')[0];
+  const observacionesInput = document.querySelectorAll('textarea')[0];
+  const enviarBtn = document.querySelectorAll('button')[6];
 
-    document.getElementById('irEstado').addEventListener('click', () => swiper.slideTo(1));
-    document.getElementById('volverRecoleccion').addEventListener('click', () => swiper.slideTo(0));
-    document.getElementById('irQuejas').addEventListener('click', () => swiper.slideTo(2));
-    document.getElementById('volverEstado').addEventListener('click', () => swiper.slideTo(1));
+  const selectSolicitud = document.querySelectorAll('select')[1];
+  const direccionInput = document.querySelectorAll('input')[3];
+  const estadoInput = document.querySelectorAll('input')[4];
+  const fechaInput = document.querySelectorAll('input')[5];
 
-    document.getElementById('fecha').value = new Date().toISOString().split('T')[0];
-    document.getElementById('fechaIncidente').value = new Date().toISOString().split('T')[0];
+  const estados = ['Pendiente ⏳', 'En proceso 🔄', 'Completado ✅', 'Cancelado ❌'];
 
-    const selectSolicitud = document.getElementById('solicitud');
-    const direccionInput = document.getElementById('direccion');
-    const fechaEstado = document.getElementById('fechaEstado');
+  enviarBtn.addEventListener('click', () => {
+    const ubicacion = ubicacionInput.value.trim();
+    const fecha = fechaRecoleccionInput.value;
+    const tipo = tipoResiduoSelect.value;
+    const observacion = observacionesInput.value.trim();
 
-    function cargarSolicitudes() {
-      const solicitudes = JSON.parse(localStorage.getItem('solicitudes')) || [];
-      selectSolicitud.innerHTML = '<option value="">Selecciona tu solicitud</option>';
-      solicitudes.forEach((item, index) => {
-        const opt = document.createElement('option');
-        opt.value = index;
-        opt.textContent = `${item.ubicacion} – ${item.fecha}`;
-        selectSolicitud.appendChild(opt);
-      });
-      return solicitudes;
+    if (!ubicacion || !fecha || tipo === 'Selecciona el tipo de residuo') {
+      alert('Por favor completa todos los campos requeridos.');
+      return;
     }
 
-    selectSolicitud.addEventListener('change', () => {
-      const solicitudes = JSON.parse(localStorage.getItem('solicitudes')) || [];
-      const idx = selectSolicitud.value;
-      if (solicitudes[idx]) {
-        direccionInput.value = solicitudes[idx].ubicacion;
-        fechaEstado.value = solicitudes[idx].fecha;
-      }
-    });
+    const solicitud = {
+      ubicacion,
+      estado: 'Pendiente ⏳',
+      fecha,
+      tipo,
+      observacion
+    };
+    solicitudes.push(solicitud);
 
-    document.getElementById('formRecoleccion').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const datos = JSON.parse(localStorage.getItem('solicitudes')) || [];
-      const nueva = {
-        fecha: document.getElementById('fecha').value,
-        tipo: document.getElementById('tipo').value,
-        ubicacion: document.getElementById('ubicacion').value,
-        observaciones: document.getElementById('observaciones').value
-      };
-      datos.push(nueva);
-      localStorage.setItem('solicitudes', JSON.stringify(datos));
-      alert("Solicitud guardada correctamente.");
-      cargarSolicitudes();
-      this.reset();
-    });
+    const option = document.createElement('option');
+    option.textContent = ubicacion;
+    option.value = ubicacion;
+    selectSolicitud.appendChild(option);
 
-    const solicitudes = cargarSolicitudes();
-    const tipos = { Orgánico: 0, Inorgánicos: 0, Peligrosos: 0 };
-    const dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
-    const diasConteo = [0, 0, 0, 0, 0, 0, 0];
+    ubicacionInput.value = '';
+    observacionesInput.value = '';
+    alert('Solicitud registrada correctamente.');
+  });
 
-    solicitudes.forEach(s => {
-      if (tipos[s.tipo] !== undefined) tipos[s.tipo]++;
-      const d = new Date(s.fecha).getDay();
-      const i = d === 0 ? 6 : d - 1;
-      diasConteo[i]++;
-    });
-
-    new Chart(document.getElementById('chartHistograma'), {
-      type: 'bar',
-      data: {
-        labels: Object.keys(tipos),
-        datasets: [{ label: 'Tipo de basura recolectada', data: Object.values(tipos), backgroundColor: 'gray' }]
-      }
-    });
-
-    new Chart(document.getElementById('chartPie'), {
-      type: 'pie',
-      data: {
-        labels: Object.keys(tipos),
-        datasets: [{ data: Object.values(tipos), backgroundColor: ['#666', '#aaa', '#ccc'] }]
-      }
-    });
-
-    new Chart(document.getElementById('chartLinea'), {
-      type: 'line',
-      data: {
-        labels: dias,
-        datasets: [{ label: 'Solicitudes por día', data: diasConteo, borderColor: 'black', fill: false }]
-      }
-    });
-    
-  </script>
+  selectSolicitud.addEventListener('change', () => {
+  const selected = solicitudes.find(s => s.ubicacion === selectSolicitud.value);
+  if (selected) {
+    direccionInput.value = '';
+    document.getElementById('estadoSelector').value = selected.estado;
+    document.getElementById('fechaEstado').value = selected.fecha;
+  }
+});
+document.getElementById('estadoSelector').addEventListener('change', function () {
+  const ubicacionActual = selectSolicitud.value;
+  const solicitud = solicitudes.find(s => s.ubicacion === ubicacionActual);
+  if (solicitud) {
+    solicitud.estado = this.value;
+    alert('Estado actualizado a: ' + this.value);
+  }
+});
+</script>
 </body>
 </html>
